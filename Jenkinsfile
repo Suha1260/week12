@@ -11,10 +11,13 @@ pipeline {
 
         stage('Run Selenium Tests with pytest') {
             steps {
-                bat 'python -m pip install -r requirements.txt'
-                bat 'start /B python app.py'
+                bat '"C:\\Users\\suhaa\\AppData\\Local\\Programs\\Python\\Python313\\python.exe" -m pip install -r requirements.txt'
+
+                bat 'start /B "" "C:\\Users\\suhaa\\AppData\\Local\\Programs\\Python\\Python313\\python.exe" app.py'
+
                 bat 'ping 127.0.0.1 -n 6 > nul'
-                bat 'python -m pytest -v'
+
+                bat '"C:\\Users\\suhaa\\AppData\\Local\\Programs\\Python\\Python313\\python.exe" -m pytest -v'
             }
         }
 
@@ -34,7 +37,9 @@ pipeline {
                     )
                 ]) {
                     bat 'docker tag week12-registration:v1 %DOCKERHUB_USER%/week12-registration:v1'
-                    bat 'echo %DOCKERHUB_TOKEN% | docker login -u %DOCKERHUB_USER% --password-stdin'
+
+                    bat 'echo %DOCKERHUB_TOKEN%| docker login -u %DOCKERHUB_USER% --password-stdin'
+
                     bat 'docker push %DOCKERHUB_USER%/week12-registration:v1'
                 }
             }
