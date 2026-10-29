@@ -1,0 +1,49 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Application Form</title>
+</head>
+<body>
+    <h1>Application Form</h1>
+
+    <form action="/submit" method="POST" onsubmit="return validateForm()">
+        <label for="username">Enter your name:</label>
+        <input type="text" id="username" name="username">
+        <br><br>
+
+        <label for="pwd">Enter your password:</label>
+        <input type="password" id="pwd" name="pwd">
+        <br><br>
+
+        <button type="submit" name="sb">Submit</button>
+    </form>
+
+    <script>
+        function validateForm() {
+            const username =
+                document.getElementById("username").value.trim();
+            const password =
+                document.getElementById("pwd").value;
+
+            if (username === "") {
+                alert("Username cannot be empty.");
+                return false;
+            }
+
+            if (password === "") {
+                alert("Password cannot be empty.");
+                return false;
+            }
+
+            if (password.length < 6) {
+                alert("Password must be at least 6 characters long.");
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+</body>
+</html>

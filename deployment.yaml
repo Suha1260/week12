@@ -1,0 +1,20 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: week12-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: week12-registration
+  template:
+    metadata:
+      labels:
+        app: week12-registration
+    spec:
+      containers:
+        - name: registration-app
+          image: suhaanum/week12-registration:v1
+          ports:
+            - containerPort: 5000
